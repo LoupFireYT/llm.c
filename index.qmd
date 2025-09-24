@@ -1,0 +1,132 @@
+# Content 
+
+#### Chapter 1 — Orientation
+
+1. What *llm.c* Is (scope, goals, philosophy)
+2. Repository Tour (folders, files, structure)
+3. Makefile Targets & Flags (CPU, CUDA, options)
+4. Quickstart: CPU Reference Path (`train_gpt2.c`)
+5. Quickstart: 1-GPU Legacy Path (`train_gpt2_fp32.cu`)
+6. Quickstart: Modern CUDA Path (`train_gpt2.cu`)
+7. Starter Artifacts & Data Prep (`dev/download_starter_pack.sh`, `dev/data/`)
+8. Debugging Tips & IDE Stepping (`-g`, gdb, lldb, IDEs)
+9. Project Constraints & Readability Contract
+10. Community, Discussions, and Learning Path
+
+#### Chapter 2 — Data, Tokenization, and Loaders
+
+11. GPT-2 Tokenizer Artifacts (`gpt2_tokenizer.bin`)
+12. Binary Dataset Format (`.bin` with header + tokens)
+13. Dataset Scripts in `dev/data/` (Tiny Shakespeare, OpenWebText)
+14. DataLoader Design (batching, strides, epochs)
+15. EvalLoader and Validation Workflow
+16. Sequence Length and Memory Budgeting
+17. Reproducibility and Seeding Across Runs
+18. Error Surfaces from Bad Data (bounds, asserts)
+19. Tokenization Edge Cases (UNKs, EOS, BOS)
+20. Data Hygiene and Logging
+
+#### Chapter 3 — Model Definition & Weights
+
+21. GPT-2 Config: vocab, layers, heads, channels
+22. Parameter Tensors and Memory Layout
+23. Embedding Tables: token + positional
+24. Attention Stack: QKV projections and geometry
+25. MLP Block: linear layers + activation
+26. LayerNorm: theory and implementation (`doc/layernorm`)
+27. Residual Streams: skip connections explained
+28. Loss Head: tied embeddings and logits
+29. Checkpoint Loading from PyTorch
+30. Parameter Counting and Sanity Checks
+
+#### Chapter 4 — CPU Inference (Forward only)
+
+31. Forward Pass Walkthrough
+32. Token and Positional Embedding Lookup
+33. Attention: matmuls, masking, softmax on CPU
+34. MLP: GEMMs and activation functions
+35. LayerNorm on CPU (step-by-step)
+36. Residual Adds and Signal Flow
+37. Cross-Entropy Loss on CPU
+38. Putting It All Together: The `gpt2_forward`
+39. OpenMP Pragmas for Parallel Loops
+40. CPU Memory Footprint and Performance
+
+#### Chapter 5 — Training Loop (CPU Path)
+
+41. Skeleton of Training Loop
+42. AdamW Implementation in C
+43. Learning Rate Schedulers (cosine, warmup)
+44. Gradient Accumulation and Micro-Batching
+45. Logging and Progress Reporting
+46. Validation Runs in Training Loop
+47. Checkpointing Parameters and Optimizer State
+48. Reproducibility and Small Divergences
+49. Command-Line Flags and Defaults
+50. Example CPU Training Logs and Outputs
+
+#### Chapter 6 — Testing, Profiling, & Parity
+
+51. Debug State Structs and Their Role
+52. `test_gpt2.c`: CPU vs PyTorch
+53. `test_gpt2cu.cu`: CUDA vs PyTorch
+54. Matching Outputs Within Tolerances
+55. Profiling with `profile_gpt2.cu`
+56. Measuring FLOPs and GPU Utilization
+57. Reproducing Known Loss Curves
+58. Common CUDA Pitfalls (toolchain, PTX)
+59. cuDNN FlashAttention Testing (`USE_CUDNN`)
+60. From Unit Test to Full Training Readiness
+
+#### Chapter 7 — CUDA Training Internals (`train_gpt2.cu`)
+
+61. CUDA Architecture Overview (streams, kernels)
+62. Matrix Multiplication via cuBLAS/cuBLASLt
+63. Attention Kernels: cuDNN FlashAttention
+64. Mixed Precision: FP16/BF16 with Master FP32 Weights
+65. Loss Scaling in Mixed Precision Training
+66. Activation Checkpointing and Memory Tradeoffs
+67. GPU Memory Planning: params, grads, states
+68. Kernel Launch Configurations and Occupancy
+69. CUDA Error Handling and Debugging
+70. `dev/cuda/`: From Simple Kernels to High Performance
+
+#### Chapter 8 — Multi-GPU & Multi-Node Training
+
+71. Data Parallelism in *llm.c*
+72. MPI Process Model and GPU Affinity
+73. NCCL All-Reduce for Gradient Sync
+74. Building and Running Multi-GPU Trainers
+75. Multi-Node Bootstrapping with MPI
+76. SLURM and PMIx Caveats
+77. Debugging Multi-GPU Hangs and Stalls
+78. Scaling Stories: GPT-2 124M → 774M → 1.6B
+79. NCCL Tuning and Overlap Opportunities
+80. Common Multi-GPU Errors and Fixes
+
+#### Chapter 9 — Extending the Codebase
+
+81. The `dev/cuda` Library for Custom Kernels
+82. Adding New Dataset Pipelines (`dev/data/*`)
+83. Adding a New Optimizer to the Codebase
+84. Adding a New Scheduler (cosine, step, etc.)
+85. Alternative Attention Mechanisms
+86. Profiling and Testing New Kernels
+87. Using PyTorch Reference as Oracle
+88. Exploring Beyond GPT-2: LLaMA Example
+89. Porting Playbook: C → Go/Rust/Metal
+90. Keeping the Repo Minimal and Clean
+
+#### Chapter 10 — Reproductions, Community, and Roadmap
+
+91. Reproducing GPT-2 124M on Single Node
+92. Reproducing GPT-2 355M (constraints and tricks)
+93. Reproducing GPT-2 774M (scaling up)
+94. Reproducing GPT-2 1.6B on 8×H100 (24h run)
+95. CPU-only Fine-Tune Demo (Tiny Shakespeare)
+96. Cost and Time Estimation for Runs
+97. Hyperparameter Sweeps (`sweep.sh`)
+98. Validating Evaluation and Loss Curves
+99. Future Work: Kernel Library, Less cuDNN Dependence
+100. Community, GitHub Discussions, and Suggested Learning Path
+
